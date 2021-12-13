@@ -7,7 +7,7 @@ import { Asset } from "expo-asset";
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
-
+import Gate from './components/Gate';
 
 // images를 인자로 받아 promise array를 return
 const cacheImages = images => images.map(image => {
@@ -32,14 +32,14 @@ export default function App() {
         Ionicons.font
       ];
       const imagePromises = cacheImages(images);
-      const fontPromises = cacheFonts(font);
+      const fontPromises = cacheFonts(fonts);
       // cache~ 함수에 적용되는 모든 font와 image의 promise 배열 return
       return Promise.all([...fontPromises, ...imagePromises]); // 점 3개 -> 내용물 가져오기
   }
 
 
   return isReady ? (
-  <Text>I'm ready</Text>
+  <Text> <Gate></Gate> </Text>
   ) : ( <AppLoading 
           onError={console.error} 
           onFinish={handleFinish} 
