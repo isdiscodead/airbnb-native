@@ -1,11 +1,8 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./rootReducer";
 
-import { persistStore } from "redux-persist";
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER  } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import persistReducer from "redux-persist/es/persistReducer";
-import { PURGE } from "redux-persist/es/constants";
-
 
 // Persist Config 
 // 어떤 storage를 사용해서 어떻게 state를 저장하고 싶은지를 설정
@@ -18,8 +15,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const persistedStore = persistedStore(store)
-
 const store = configureStore({
     // rootReducer 대신 사용하도록 설정
     reducer: persistedReducer,
@@ -27,9 +22,11 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
-                ignoredPaths: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-            }
-        })
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }),
 });
+
+const persistedStore = persistStore(store)
 
 export default store;
