@@ -9,6 +9,7 @@ export default () => {
     // useSelector는 state의 원하는 부분에 대해서 접근하게 해주는 hook
     const { isLoggedIn } = useSelector(state => state.usersReducer) 
     // Hook 사용 시 useDispatch 사용 가능 ! ( 아닐 경우 똑같이 mapDispatchToProps 사용 )
+    // dispatch -> action을 받아 이벤트 발생시켜주는 함수
     const dispatch = useDispatch();
     
     return (
