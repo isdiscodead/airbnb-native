@@ -23,10 +23,10 @@ const store = configureStore({
         getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        }),
+            }
+        })
 });
 
-const persistedStore = persistStore(store)
+export const persistor = persistStore(store)
 
 export default store;
