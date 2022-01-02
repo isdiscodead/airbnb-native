@@ -13,10 +13,12 @@ const persistConfig = {
     storage: AsyncStorage
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+// AsyncStorage.getItem("root") 처럼 사용하여 state에 접근 가능 
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-    // rootReducer 대신 사용하도록 설정
+    // rootReducer 대신 persisted된 reducer를 사용하도록 설정
     reducer: persistedReducer,
     // toolkit과의 action 종류 충돌을 방지하기 위해 middleware 설정 ( toolkit이 persist의 action 무시 )
     middleware: (getDefaultMiddleware) =>

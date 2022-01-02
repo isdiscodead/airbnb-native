@@ -13,11 +13,11 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 
-// images를 인자로 받아 promise array를 return
+// images를 인자로 받아 promise array를 return하는 func
 const cacheImages = images => images.map(image => {
-  if(typeof image === "string") { // 주소의 경우
+  if(typeof image === "string") { // 주소의 경우 prefetch
     return Image.prefetch(image)
-  } else {
+  } else {  // 파일이라면 download
     return Asset.fromModule(image).downloadAsync();
   }
 })
@@ -29,12 +29,15 @@ const cacheFonts = fonts => fonts.map(font => Font.loadAsync(font));
 export default function App() {
   const [isReady, setIsReady] = useState(false);
   const handleFinish = () => setIsReady(true);
+
+  // assets들을 preload
   const loadAssets = () => {
       // image와 font preload
       const images = [require("./assets/loginBg.jpeg"), "https://ebenezersuites.com/wp-content/uploads/2016/06/airbnb-logo-266x300@2x.png"];
       const fonts = [
         Ionicons.font
       ];
+      // cache하여 
       const imagePromises = cacheImages(images);
       const fontPromises = cacheFonts(fonts);
       // cache~ 함수에 적용되는 모든 font와 image의 promise 배열 return
@@ -50,10 +53,10 @@ export default function App() {
       <Gate/> 
     </PersistGate>
   </Provider>
-  ) : ( <AppLoading 
+  ) : ( <AppLoading // appLoading component가 loadAssets 함수를 호출
           onError={console.error} 
           onFinish={handleFinish} 
-          startAsync={loadAssets}
+          startAsync={await loadAssets()} // await -> load가 전부 완료 될 때까지 대기
         />
   );
 }
