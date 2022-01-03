@@ -1,4 +1,5 @@
 // Gate.js -> 2개의 다른 navigation을 보여줌 
+import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,17 +14,17 @@ export default () => {
     const dispatch = useDispatch();
     
     return (
-    <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-        { isLoggedIn ? ( 
-            <TouchableOpacity onPress={() => dispatch(logOut())}>
-                <Text>Log Out</Text>
-            </TouchableOpacity> 
-        ) : ( 
-            <TouchableOpacity onPress={() => dispatch(logIn("bs.token"))}>
-                <Text>Log In</Text>
-            </TouchableOpacity> 
-        )}
-    </View>
+        // Navigation 사용을 위해서는 Container에 감싸줘야 함
+        <NavigationContainer>
+            { isLoggedIn ? ( 
+                <TouchableOpacity onPress={() => dispatch(logOut())}>
+                    <Text>Log Out</Text>
+                </TouchableOpacity> 
+            ) : ( 
+                
+                <Auth />
+            )}
+        </NavigationContainer>
     );
 };
 

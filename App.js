@@ -56,7 +56,7 @@ export default function App() {
   ) : ( <AppLoading // appLoading component가 loadAssets 함수를 호출
           onError={console.error} 
           onFinish={handleFinish} 
-          startAsync={await loadAssets()} // await -> load가 전부 완료 될 때까지 대기
+          startAsync={loadAssets} // await -> load가 전부 완료 될 때까지 대기
         />
   );
 }
