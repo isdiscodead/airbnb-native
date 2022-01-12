@@ -30,10 +30,12 @@
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "styled-components-react-native": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "@types/styled-components": "^5.1.20"
   },
   "private": true
 }

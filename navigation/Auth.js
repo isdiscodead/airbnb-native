@@ -8,13 +8,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Welcome from "../screens/Welcome";
 import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
+import BackBtn from "../components/Auth/BackBtn";
 
-// IonIcons
-import { Ionicons } from "@expo/vector-icons";
 
-// IOS or Android 확인 -> 기기에 따라 다른 아이콘 사용
-import { Platform } from "react-native";
-const isAndroid = Platform.OS === "android"
 
 const Auth = createStackNavigator();
 
@@ -24,17 +20,14 @@ export default () => (
     // Screen Options
     // mode -> card: 기본 ( 옆으로 ), modal: 아래서 위로
     // headerMode -> screen: 기본, float: 텍스트 올라옴
-    <Auth.Navigator mode="modal" headerMode="float" screenOptions={{
+    <Auth.Navigator screenOptions={{
+        mode: "modal",
+        headerMode: "float", 
         headerBackTitleVisible: false,
         headerTransparent: true,
-        headerBackImage: () => 
-        <View style={{ paddingLeft: 20 }}>
-            <Ionicons
-                name={ isAndroid ? "md-arrow-down" : "ios-arrow-down" } 
-                size={28} 
-            />
-        </View>
-    }}> 
+        headerBackImage: () => <BackBtn></BackBtn>
+        }}
+    > 
         <Auth.Screen name="Welcome" component={Welcome}/>
         <Auth.Screen name="SignIn" component={SignIn}/>
         <Auth.Screen name="SignUp" component={SignUp}/>

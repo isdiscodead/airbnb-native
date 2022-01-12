@@ -1,10 +1,13 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import styled from "styled-components/native";
 
-export default ({ navigation }) => (
-    <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-        <Text>Welcome</Text>
-        <Button onPress={() => navigation.navigate("SignUp")} title={"Sign Up"}/>
-        <Button onPress={() => navigation.navigate("SignIn")} title={"Sign In"}/>
-    </View>
-);
+const Container = styled.View``;
+const Image = styled.Image``;
+
+export default ({ navigation }) => {
+    return (
+        <Container>
+            <Image source={require("../assets/loginBg.jpeg")} />
+        </Container>
+    );
+};
