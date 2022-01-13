@@ -7,7 +7,7 @@ const Image = styled.Image``;
 export default ({ navigation }) => {
     return (
         <Container>
-            <Image source={require("../assets/loginBg.jpeg")} />
+            <Image source={require("../assets/dfdfdf.jpeg")} />
         </Container>
     );
 };

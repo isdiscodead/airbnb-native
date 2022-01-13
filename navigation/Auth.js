@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 
 // Stack Navigator
 import { createStackNavigator } from "@react-navigation/stack";
@@ -8,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Welcome from "../screens/Welcome";
 import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
+
 import BackBtn from "../components/Auth/BackBtn";
 
 
@@ -20,12 +20,12 @@ export default () => (
     // Screen Options
     // mode -> card: 기본 ( 옆으로 ), modal: 아래서 위로
     // headerMode -> screen: 기본, float: 텍스트 올라옴
-    <Auth.Navigator screenOptions={{
-        mode: "modal",
-        headerMode: "float", 
+    <Auth.Navigator 
+        mode="modal" 
+        screenOptions={{
         headerBackTitleVisible: false,
         headerTransparent: true,
-        headerBackImage: () => <BackBtn></BackBtn>
+        headerBackImage: () => <BackBtn />
         }}
     > 
         <Auth.Screen name="Welcome" component={Welcome}/>
