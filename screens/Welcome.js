@@ -38,8 +38,8 @@ export default ({ navigation }) => {
             <BlurView intensity={35} tint="light" style={{ flex: 1, width: "100%", alignItems: "center", justifyContent: "center"}}>
                 <Logo source={{ uri: LOGO_URL }} /> 
                 <BtnContainer>
-                    <Btn onPress={"goToSignUp"} text={"Sign Up"} accent={true} />
-                    <Btn onPress={"goToSignIn"} text={"Sign In"} />
+                    <Btn onPress={goToSignUp} text={"Sign Up"} accent={true} />
+                    <Btn onPress={goToSignIn} text={"Sign In"} />
                 </BtnContainer>
             </BlurView>
 
