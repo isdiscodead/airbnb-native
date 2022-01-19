@@ -11,9 +11,7 @@ import SignUp from "../screens/SignUp";
 import BackBtn from "../components/Auth/BackBtn";
 
 
-
 const Auth = createStackNavigator();
-
 
 // navigator 안에는 사용할 screen들이 와야 함
 export default () => (
